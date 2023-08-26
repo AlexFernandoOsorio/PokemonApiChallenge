@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/pokemonHomeFragment">
+    <fragment
+        android:id="@+id/pokemonHomeFragment"
+        android:name="com.example.pokemonapp.ui.pokemonhome.PokemonHomeFragment"
+        android:label="fragment_pokemon_home"
+        tools:layout="@layout/fragment_pokemon_home" >
+        <action
+            android:id="@+id/action_pokemonHomeFragment_to_pokemonDetailsFragment"
+            app:destination="@id/pokemonDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetailsFragment"
+        android:name="com.example.pokemonapp.ui.pokemondetails.PokemonDetailsFragment"
+        android:label="fragment_pokemon_details"
+        tools:layout="@layout/fragment_pokemon_details" >
+        <action
+            android:id="@+id/action_pokemonDetailsFragment_to_pokemonSkillsFragment"
+            app:destination="@id/pokemonSkillsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonSkillsFragment"
+        android:name="com.example.pokemonapp.ui.pokemonskills.PokemonSkillsFragment"
+        android:label="fragment_pokemon_skills"
+        tools:layout="@layout/fragment_pokemon_skills" />
+</navigation>

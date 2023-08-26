@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.pokemondetails.PokemonDetailsFragment">
+
+    <data>
+        <variable
+            name="pokemon"
+            type="com.example.pokemonapp.ui.pokemondetails.PokemonDetailsViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/frag_details_pokemon_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:text="nombre"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            bind:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"></TextView>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="28dp"
+            android:text="Felicidad base : "
+            android:textStyle="bold"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/frag_details_pokemon_name"></TextView>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:text="Ratio de captura : "
+            android:textStyle="bold"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:text="Color : "
+            android:textStyle="bold"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/textView2"></TextView>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="28dp"
+            android:text="Grupos de huevo : "
+            android:textStyle="bold"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/textView3"></TextView>
+
+        <TextView
+            android:id="@+id/frag_details_pokemon_happy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Felicidad base : "
+            bind:layout_constraintStart_toEndOf="@+id/textView"
+            bind:layout_constraintTop_toBottomOf="@+id/frag_details_pokemon_name"></TextView>
+
+        <TextView
+            android:id="@+id/frag_details_pokemon_capture_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:text="Ratio de captura : "
+            bind:layout_constraintStart_toEndOf="@+id/textView2"
+            bind:layout_constraintTop_toBottomOf="@+id/frag_details_pokemon_happy"></TextView>
+
+        <TextView
+            android:id="@+id/frag_details_pokemon_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:text="Color : "
+            bind:layout_constraintStart_toEndOf="@+id/textView3"
+            bind:layout_constraintTop_toBottomOf="@+id/frag_details_pokemon_capture_rate"></TextView>
+
+        <TextView
+            android:id="@+id/frag_details_pokemon_groups"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Grupos de huevo : "
+            bind:layout_constraintStart_toEndOf="@+id/textView4"
+            bind:layout_constraintTop_toBottomOf="@+id/frag_details_pokemon_color"></TextView>
+
+        <Button
+            android:id="@+id/frag_button_line"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Linea Evolutiva"
+            android:backgroundTint="@color/red_primary"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Button
+            android:id="@+id/frag_button_skills"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/green_circle"
+            android:text="Habilidades"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/frag_button_line" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
