@@ -1,5 +1,6 @@
 package com.example.pokemonapp.domain.mappers
 
+import android.text.TextUtils.replace
 import com.example.pokemonapp.data.network.models.pokemondetailsdto.PokemonDetailsDto
 import com.example.pokemonapp.domain.models.PokemonDetailsModel
 

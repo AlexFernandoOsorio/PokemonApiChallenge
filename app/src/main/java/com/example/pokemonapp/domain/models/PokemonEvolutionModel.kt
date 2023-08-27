@@ -1,4 +1,6 @@
 package com.example.pokemonapp.domain.models
 
-class PokemonEvolutionModel {
-}
+data class PokemonEvolutionModel (
+    val id: Int,
+    val chainEvolution: List<String>
+)

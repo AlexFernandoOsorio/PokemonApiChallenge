@@ -7,7 +7,7 @@ data class Chain(
     @SerializedName("evolution_details")
     val evolutionDetails: List<Any>,
     @SerializedName("evolves_to")
-    val evolvesTo: List<EvolvesTo>,
+    val evolvesTo: List<Chain>,
     @SerializedName("is_baby")
     val isBaby: Boolean,
     @SerializedName("species")

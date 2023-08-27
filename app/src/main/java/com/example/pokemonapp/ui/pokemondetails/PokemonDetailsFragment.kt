@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.pokemonapp.R
@@ -39,13 +40,24 @@ class PokemonDetailsFragment : Fragment() {
             binding.fragDetailsPokemonHappy.text = it.baseHappiness.toString()
             binding.fragDetailsPokemonCaptureRate.text = it.captureRate.toString()
             binding.fragDetailsPokemonColor.text = it.color
-            binding.fragDetailsPokemonGroups.text = it.eggGroups.toString()
+            binding.fragDetailsPokemonGroups.text = viewModel.removeBrackets(it.eggGroups.toString())
         }
 
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.fragProgressBar.isVisible = it
+            binding.fragLayoutPokemonDetails.isVisible = !it
+        }
         binding.fragButtonSkills.setOnClickListener {
             findNavController().navigate(R.id.action_pokemonDetailsFragment_to_pokemonSkillsFragment, Bundle().apply {
                 putString("name", requireArguments().getString("name"))
             })
         }
+
+        binding.fragButtonLine.setOnClickListener {
+            findNavController().navigate(R.id.action_pokemonDetailsFragment_to_pokemonEvolutionFragment, Bundle().apply {
+                putInt("id", viewModel.extractChainIdFromUrl(viewModel.pokemonDetailsModel.value?.evolutionChain.toString())!!)
+            })
+        }
+
     }
 }

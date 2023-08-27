@@ -21,6 +21,9 @@ class PokemonEvolutionAdapter(
     override fun onBindViewHolder(holder: PokemonEvolutionViewHolder, position: Int) {
         val evolution = evolutionList[position]
         holder.pokemon_evolution.text = evolution
+        holder.itemView.setOnClickListener {
+            listener.onEvolutionClick(evolution)
+        }
     }
 
     override fun getItemCount(): Int = evolutionList.size
@@ -31,6 +34,6 @@ class PokemonEvolutionAdapter(
     }
 
     interface OnEvolutionClickListener {
-        fun onEvolutionClick(evolution: PokemonEvolutionModel)
+        fun onEvolutionClick(namePokemon: String)
     }
 }

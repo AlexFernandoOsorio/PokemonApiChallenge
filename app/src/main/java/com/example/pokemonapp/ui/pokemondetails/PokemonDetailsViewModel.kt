@@ -1,5 +1,6 @@
 package com.example.pokemonapp.ui.pokemondetails
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,19 +22,34 @@ class PokemonDetailsViewModel @Inject constructor(
     private var _pokemonDetailsModel = MutableLiveData<PokemonDetailsModel>()
     var pokemonDetailsModel: MutableLiveData<PokemonDetailsModel> = _pokemonDetailsModel
 
+    private var _isLoading = MutableLiveData<Boolean>()
+    var isLoading : MutableLiveData<Boolean> = _isLoading
+
     fun completeValuesOfPokemonDetails(name : String){
         viewModelScope.launch(Dispatchers.IO) {
+            _isLoading.postValue(true)
             var pokemonDetails = getPokemonDetailFromApi(name)
             pokemonDetails.collect {
+                _isLoading.postValue(false)
                 _pokemonDetailsModel.postValue(it)
             }
         }
     }
 
     private fun getPokemonDetailFromApi(name : String) = flow<PokemonDetailsModel>{
-        val pokemonList = pokemonRepository.getPokemonDetailsFromAPI(name).toDomainPokemonDetails()
-        emit(pokemonList)
+        val pokemon = pokemonRepository.getPokemonDetailsFromAPI(name).toDomainPokemonDetails()
+        emit(pokemon)
     }.catch {
-        emit(PokemonDetailsModel("",0,0,"", emptyList(),""))
-    }.flowOn(Dispatchers.IO)
+        emit(PokemonDetailsModel.empty())
+    }
+
+    fun extractChainIdFromUrl(url: String): Int? {
+        val uri = Uri.parse(url)
+        val lastPathSegment = uri.lastPathSegment
+        return lastPathSegment?.toIntOrNull()
+    }
+
+    fun removeBrackets(string: String): String {
+        return string.replace("[", "").replace("]", "")
+    }
 }

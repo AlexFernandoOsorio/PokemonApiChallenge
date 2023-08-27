@@ -1,5 +1,6 @@
 package com.example.pokemonapp.di
 
+import com.example.pokemonapp.data.local.dao.PokemonDao
 import com.example.pokemonapp.data.network.services.ApiServicePokemon
 import com.example.pokemonapp.data.repositories.PokemonRepositoryImpl
 import com.example.pokemonapp.domain.repositories.PokemonRepository
@@ -13,7 +14,7 @@ import dagger.hilt.components.SingletonComponent
 object RepositoriesModule {
 
     @Provides
-    fun providePokemonRepository(pokemonApi: ApiServicePokemon): PokemonRepository {
-        return PokemonRepositoryImpl(pokemonApi)
+    fun providePokemonRepository(pokemonApi: ApiServicePokemon,pokemonDao : PokemonDao): PokemonRepository {
+        return PokemonRepositoryImpl(pokemonApi,pokemonDao)
     }
 }

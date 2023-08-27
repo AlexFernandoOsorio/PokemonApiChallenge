@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokemonapp.R
@@ -38,11 +39,15 @@ class PokemonSkillsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.completeSkillsOfPokemon(requireArguments().getString("name").toString())
         binding.recyclerSkills.layoutManager = LinearLayoutManager(context)
-        viewModel.pokemonSkillsModel.observe(viewLifecycleOwner) {
+        viewModel.pokemonListSkillsModel.observe(viewLifecycleOwner) {
             pokemonSkills = it.skills
             pokemonSkillsAdapter = PokemonSkillsAdapter(pokemonSkills)
             binding.recyclerSkills.adapter = pokemonSkillsAdapter
             pokemonSkillsAdapter.notifyDataSetChanged()
+        }
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.fragProgressBar.isVisible = it
+            binding.recyclerSkills.isVisible = !it
         }
 
     }
